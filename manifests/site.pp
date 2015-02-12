@@ -34,7 +34,7 @@ node 'cdh-host.labyrinth' {
 }
 
 # Cloudera Hosts in a deployment named 'labyrinth' -- actual nodes.
-node 'sarah.puppetlabs.vm'   inherits 'cdh-host.labyrinth' { }
+node 'ip-10-0-20-233.us-west-2.compute.internal'   inherits 'cdh-host.labyrinth' { }
 node 'toby.puppetlabs.vm'    inherits 'cdh-host.labyrinth' { }
 node 'jareth.puppetlabs.vm'  inherits 'cdh-host.labyrinth' { }
 node 'ludo.puppetlabs.vm'    inherits 'cdh-host.labyrinth' { }
