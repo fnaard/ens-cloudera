@@ -104,7 +104,7 @@ class profile::cdh::manager (
     }
   }
   else {
-    ssh_authorized_key { 'cloudera-manager':
+    @@ssh_authorized_key { 'cloudera-manager':
       ensure => absent,
       user   => 'root',
     }
