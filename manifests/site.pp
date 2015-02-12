@@ -37,5 +37,4 @@ node 'cdh-host.labyrinth' {
 node 'sarah.puppetlabs.vm'   inherits 'cdh-host.labyrinth' { }
 node 'toby.puppetlabs.vm'    inherits 'cdh-host.labyrinth' { }
 node 'jareth.puppetlabs.vm'  inherits 'cdh-host.labyrinth' { }
-node 'ludo.puppetlabs.vm'    inherits 'cdh-host.labyrinth' { }
 node 'didymus.puppetlabs.vm' inherits 'cdh-host.labyrinth' { }
