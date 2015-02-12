@@ -1,6 +1,6 @@
 # Overview
 
-This pair of profiles is intended to simplify the creation of a new Cloudera 5 deployment.  By classifying nodes as either a manager or a host, with an optional name for the deployment, a Manager will be created and Hosts will automatically add themselves to its list of Hosts.
+This pair of profiles is intended to simplify the creation of a new Cloudera 5 deployment.  By classifying nodes as either a manager or a host, with an optional name for the deployment, a Manager will be created and Hosts will automatically add themselves to its list of Hosts.  Additionally, you can provide a public and private key (do these in Hiera) that will get managed -- the private on the Manager, and the public on all Hosts.
 
 These profiles currently work in a deployment where parcels will be used to distribute binaries, and where the Manager will do all Management of clusters and such in its GUI.
 
