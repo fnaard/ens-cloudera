@@ -6,7 +6,7 @@ class profile::base {
     ensure => directory,
     owner  => 'root',
     group  => 'root',
-    mode   => '0400',
+    mode   => '0500',
   }
 
   package { [ 'ntpdate', 'git' ]:
