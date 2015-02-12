@@ -68,4 +68,7 @@ class profile::cdh::host (
     }
   }
 
+  # Collect any public keys that the Manager may have exported.
+  Ssh_authorized_key <<| tag == 'cloudera' and tag == $deployment |>>
+
 }

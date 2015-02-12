@@ -13,8 +13,8 @@ class profile::cdh::manager (
   $manage_firewall     = false,
   $manage_nagios       = false,
   $manage_java         = true,
-  $private_key_content = undef,    # generally stored in hiera
-  $public_key_content  = undef,    # generally stored in hiera
+  $private_key_content = undef,    # likely stored in Hiera
+  $public_key_content  = undef,    # likely stored in Hiera
 ) {
 
   # Export a host file entry for this machine so that other hosts
