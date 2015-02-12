@@ -7,7 +7,7 @@ Package { allow_virtual => true, }
 
 # Don't do anything if a node is not found.  Report it.
 node default {
-  notify { "Darn, ${::clientcert} did not match a node definition.": }
+  notify { "No node definition for ${::clientcert}.": }
 }
 
 
