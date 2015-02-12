@@ -9,7 +9,7 @@ class profile::base {
     mode   => '0400',
   }
 
-  package { 'ntpdate':
+  package { [ 'ntpdate', 'git' ]:
     ensure => present,
   }
 
