@@ -13,6 +13,8 @@ class profile::cdh::manager (
   $manage_firewall     = false,
   $manage_nagios       = false,
   $manage_java         = true,
+  $private_key_content = undef,    # generally stored in hiera
+  $public_key_content  = undef,    # generally stored in hiera
 ) {
 
   # Export a host file entry for this machine so that other hosts
@@ -71,4 +73,19 @@ class profile::cdh::manager (
     }
   }
 
+  # If provided, manage a private key that root can use to reach hosts.
+  if ( $private_key_content ) {
+    file { '/root/.ssh/cloudera-manager.id_rsa.pem':
+      ensure => file,
+      owner  => 'root',
+      group  => 'root',
+      content => "-----BEGIN RSA PRIVATE KEY-----\n${private_key_content}\n-----END RSA PRIVATE KEY-----\n",
+      mode => '0400',
+    }
+  }
+  else {
+    file { '/root/.ssh/cloudera-manager.id_rsa.pem':
+      ensure => absent,
+    }
+  }
 }
