@@ -7,3 +7,9 @@ These profiles currently work in a deployment where parcels will be used to dist
 # Building a Lab Environment
 
 To begin, of course you will need a Puppet Master running somewhere.  These profiles are known to work on version 3.7 of Puppet.  They *should* work on anything in the 3 series.  They don't do anything fancy.
+
+You will need a few puppet modules installed.
+
+  puppet module install razorsedge-cloudera
+  puppet module install puppetlabs-ntp
+
