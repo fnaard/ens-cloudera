@@ -1,54 +1,41 @@
+# Example site.pp
+#
 
+# Avoid deprecation warnings when Puppet installs packages.
+# This has nothing to do with Cloudera.
 Package { allow_virtual => true, }
 
+# Don't do anything if a node is not found.  Report it.
 node default {
   notify { "Darn, ${::clientcert} did not match a node definition.": }
 }
 
+
 # Puppet Master
-node 'animal.puppetlabs.vm' {
-  service { 'firewalld': ensure => stopped, enable => false, } #shotgun
+node 'hoggle.puppetlabs.vm' {
   include profile::base
 }
 
-# CDH Master
-node 'grover.puppetlabs.vm' {
-  include profile::base
-  include profile::cdh::manager
-}
 
-# CDH Nodes
-node 'bert.puppetlabs.vm' {
-  include profile::base
-  include profile::cdh::host
-}
-
-node 'ernie.puppetlabs.vm' {
-  include profile::base
-  include profile::cdh::host
-}
-
-#
-# New cdh5 deployment 'janice'
-#
-
-# Cloudera Manager machine
-node 'janice.puppetlabs.vm' {
+# Cloudera Manager
+node 'ambrosius.puppetlabs.vm' {
   include profile::base
   class { 'profile::cdh::manager':
-    deployment => 'janice',
+    deployment => 'labyrinth',
   }
 }
 
-node 'zoot.puppetlabs.vm' {
+# Cloudera Hosts in a deployment named 'labyrinth' -- in general.
+node 'cdh-host.labyrinth' {
   include profile::base
   class { 'profile::cdh::host':
-    deployment => 'janice',
+    deployment => 'labyrinth',
   }
 }
-node 'teeth.puppetlabs.vm' {
-  include profile::base
-  class { 'profile::cdh::host':
-    deployment => 'janice',
-  }
-}
+
+# Cloudera Hosts in a deployment named 'labyrinth' -- actual nodes.
+node 'sarah.puppetlabs.vm'   inherits 'cdh-host.labyrinth' { }
+node 'toby.puppetlabs.vm'    inherits 'cdh-host.labyrinth' { }
+node 'jareth.puppetlabs.vm'  inherits 'cdh-host.labyrinth' { }
+node 'ludo.puppetlabs.vm'    inherits 'cdh-host.labyrinth' { }
+node 'didymus.puppetlabs.vm' inherits 'cdh-host.labyrinth' { }
