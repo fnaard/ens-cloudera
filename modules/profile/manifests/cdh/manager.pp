@@ -73,7 +73,12 @@ class profile::cdh::manager (
     }
   }
 
-  # If provided, manage a private key that root can use to reach hosts.
+  # SSH Keys -- When configured with Puppet, the Cloudera 5 Manager and Hosts
+  #             Do NOT need ssh keys distributed.  This option is provided
+  #             as a convenience, for command-line ssh connections from the
+  #             Manager to the Hosts in the deployment.
+
+  # If the parameter is provided, manage a private key in root's home directory.
   if ( $private_key_content ) {
     file { '/root/.ssh/cloudera-manager.id_rsa.pem':
       ensure => file,
@@ -88,4 +93,20 @@ class profile::cdh::manager (
       ensure => absent,
     }
   }
+  # If the parameter is provided, export a public key that hosts can collect.
+  if ( $public_key_content ) {
+    @@ssh_authorized_key { 'cloudera-manager':
+      ensure => present,
+      key    => "${public_key_content}",
+      user   => 'root',
+      type   => 'ssh-rsa',
+      tag    => [ 'cloudera', $deployment ],
+    }
+  }
+  else {
+    ssh_authorized_key { 'cloudera-manager':
+      ensure => absent,
+    }
+  }
+
 }
