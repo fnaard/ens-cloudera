@@ -42,3 +42,11 @@ node 'ip-10-0-20-31.us-west-2.compute.internal' inherits 'cdh-host.labyrinth' { 
 node 'ip-10-0-20-35.us-west-2.compute.internal' inherits 'cdh-host.labyrinth' { }
 node 'ip-10-0-20-247.us-west-2.compute.internal' inherits 'cdh-host.labyrinth' { }
 node 'ip-10-0-20-248.us-west-2.compute.internal' inherits 'cdh-host.labyrinth' { }
+
+# Cloudera Manager
+node 'inchworm.puppetlabs.vm' {
+  include profile::base
+  class { 'profile::cdh::manager':
+    deployment => 'newthing',
+  }
+}
