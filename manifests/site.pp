@@ -59,7 +59,7 @@ node 'ip-10-0-20-165.us-west-2.compute.internal' {
 }
 
 # Cloudera Hosts in a deployment named 'sesame' -- in general.
-node 'cdh-host.labyrinth' {
+node 'cdh-host.sesame' {
   include profile::base
   class { 'profile::cdh::host':
     deployment => 'sesame',
