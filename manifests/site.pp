@@ -58,6 +58,6 @@ node 'cdh-host.fraggle' {
   }
 }
 
-# node 'ip-10-0-20-47.us-west-2.compute.internal' inherits 'cdh-host.fraggle' { }
-# node 'ip-10-0-20-48.us-west-2.compute.internal' inherits 'cdh-host.fraggle' { }
-# node 'ip-10-0-20-49.us-west-2.compute.internal' inherits 'cdh-host.fraggle' { }
+node 'ip-10-0-20-47.us-west-2.compute.internal' inherits 'cdh-host.fraggle' { }
+node 'ip-10-0-20-48.us-west-2.compute.internal' inherits 'cdh-host.fraggle' { }
+node 'ip-10-0-20-49.us-west-2.compute.internal' inherits 'cdh-host.fraggle' { }
