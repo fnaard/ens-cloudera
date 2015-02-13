@@ -40,3 +40,5 @@ node 'ip-10-0-20-28.us-west-2.compute.internal' inherits 'cdh-host.labyrinth' { 
 node 'ip-10-0-20-30.us-west-2.compute.internal' inherits 'cdh-host.labyrinth' { }
 node 'ip-10-0-20-31.us-west-2.compute.internal' inherits 'cdh-host.labyrinth' { }
 node 'ip-10-0-20-35.us-west-2.compute.internal' inherits 'cdh-host.labyrinth' { }
+node 'ip-10-0-20-247.us-west-2.compute.internal' inherits 'cdh-host.labyrinth' { }
+node 'ip-10-0-20-248.us-west-2.compute.internal' inherits 'cdh-host.labyrinth' { }
