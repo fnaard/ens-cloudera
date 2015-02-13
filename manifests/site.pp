@@ -50,22 +50,14 @@ node 'ludo.puppetlabs.vm' {
   }
 }
 
-# Cloudera Manager
-node 'ip-10-0-20-165.us-west-2.compute.internal' {
-  include profile::base
-  class { 'profile::cdh::manager':
-    deployment => 'sesame',
-  }
-}
-
-# Cloudera Hosts in a deployment named 'sesame' -- in general.
-node 'cdh-host.sesame' {
+# Cloudera Hosts in a deployment named 'fraggle' -- in general.
+node 'cdh-host.fraggle' {
   include profile::base
   class { 'profile::cdh::host':
-    deployment => 'sesame',
+    deployment => 'fraggle',
   }
 }
 
-node 'ip-10-0-20-36.us-west-2.compute.internal' inherits 'cdh-host.sesame' { }
-node 'ip-10-0-20-37.us-west-2.compute.internal' inherits 'cdh-host.sesame' { }
-node 'ip-10-0-20-38.us-west-2.compute.internal' inherits 'cdh-host.sesame' { }
+node 'ip-10-0-20-36.us-west-2.compute.internal' inherits 'cdh-host.fraggle' { }
+node 'ip-10-0-20-37.us-west-2.compute.internal' inherits 'cdh-host.fraggle' { }
+node 'ip-10-0-20-38.us-west-2.compute.internal' inherits 'cdh-host.fraggle' { }
