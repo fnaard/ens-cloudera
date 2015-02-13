@@ -67,7 +67,7 @@ At this point you may begin to classify Hosts in this deployment.
 
 ## Set up Cloudera 5 Hosts
 
-Deploy some machines to be hosts and install Puppet.  In a lab, they don't need much RAM.  An m3.small seems to work alright, although they will likely alert for low RAM in the Manager.  This module has been tested on a basic Debian 7.8 AMI.  (ami-17510927)
+Deploy some machines to be hosts and install Puppet.  In a lab, they don't need much RAM.  An m1.small seems to work alright, although they will likely alert for low RAM in the Manager.  This module has been tested on a basic Debian 7.8 AMI.  (ami-17510927)
 
 Classify the new nodes as Cloudera 5 Hosts.  For this example, they will be in a deployment called 'labyrinth.'
 
