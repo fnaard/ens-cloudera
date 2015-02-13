@@ -19,13 +19,13 @@ You will need to prepare an environment on your Puppet Master that includes the 
 
 At the bare minimum you will need the razorsedge-cloudera module on your Master.
 
-  puppet module install razorsedge-cloudera
+    puppet module install razorsedge-cloudera
 
 If you choose to have this module manage the configuration of supporting services and packages, you will need the corresponding modules installed.
 
-  puppet module install puppetlabs-ntp
-  puppet module install puppetlabs-firewall
-  puppet module install puppetlabs-java
+    puppet module install puppetlabs-ntp
+    puppet module install puppetlabs-firewall
+    puppet module install puppetlabs-java
 
 ## Set up the Cloudera 5 Manager
 
@@ -33,17 +33,17 @@ Deploy a machine to serve as the deployment's Manager and install Puppet.  A Clo
 
 Classify the new node.  In the example site.pp provided in this repo, the Cloudera 5 Manager is called ambrosius.puppetlabs.vm.  It is going to manage a deployment called 'labyrinth.'  The name of the deployment is not significant to Cloudera -- it is used by Puppet to tag exported resources is such a way that machines in the same deployment know about each other and aim at the right Manager for their deployment.
 
-  class { 'profile::cdh::manager':
-    deployment => 'labyrinth',
-  }
+    class { 'profile::cdh::manager':
+      deployment => 'labyrinth',
+    }
 
 The next `puppet agent --test` on the Manager node will take a longer-than-usual time to run, as it will be installing some large packages, including Oracle Java and Cloudera's CDH packages.
 
 After the run is complete, the Manager software will begin to come online.  This may take a few minutes while Java gets going.  The Manager GUI at this point has a default post-install configuration.
 
-  port: 7180
-  username: admin
-  password: admin
+    port: 7180
+    username: admin
+    password: admin
 
 Out of the box, the various Management roles are not assigned to any machine, including this new Manager.  You will need to enable and assign them in the GUI.
 
@@ -71,9 +71,9 @@ Deploy some machines to be hosts and install Puppet.  In a lab, they don't need 
 
 Classify the new nodes as Cloudera 5 Hosts.  For this example, they will be in a deployment called 'labyrinth.'
 
-  class { 'profile::cdh::host':
-    deployment => 'labyrinth',
-  }
+    class { 'profile::cdh::host':
+      deployment => 'labyrinth',
+    }
 
 The next `puppet agent --test` on the Host nodes will take a longer-than-usual time to run, as they will be installing some large packages, including Oracle Java and Cloudera's CDH packages.
 
