@@ -22,7 +22,7 @@
 
 class profile::cdh::host (
   $deployment = $::environment,
-  $manage_ntp          = true,
+  $manage_ntp          = false,
   $manage_firewall     = false,
   $manage_nagios       = false,
   $manage_java         = true,
