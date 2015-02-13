@@ -1,21 +1,39 @@
 # This class sets up a machine as a Cloudera agent host and aims it at its
 # deployment's manager.  The address of the local manager server is determined
-# by collecting a host record that the manager has exported.
+# by collecting a tagged host record that the manager has exported.
 #
-# This class largely just wraps classes in the razorsedge-cloudera module.
+# The optional $deployment parameter should be set to the same string that
+# this host's Manager is using.  The deployment's Manager exports resources
+# that configure Hosts to aim the cdh Agent at it.
 #
-# Optionally, this profile will use puppetlabs-firewall to open the Agent's
-# network port for debugging connections.
+# To test in a lab, for instance, apply this classification to a new machine.
 #
-# Optionally, this profile will export resources for nagios checks, that a
-# nagios server can then collect to generate its configuration.
+#   node 'my-cdh-host.localdomain' {
+#     class { 'profile::cdh::host':
+#       deployment => 'lab',
+#     }
+#   }
+
+# This class depends on the razorsedge-cloudera module to function.
+# If manage_ntp is set to true, this module requires puppetlabs-ntp
+# If manage_firewall is set to true, this module requires puppetlabs-firewall
+# If manage_java is set to true, this module requires puppetlabs-java
+
 
 class profile::cdh::host (
   $deployment = $::environment,
   $manage_ntp          = true,
   $manage_firewall     = false,
   $manage_nagios       = false,
+  $manage_java         = true,
 ) {
+
+  # Set up a basic Cloudera agent on this node, and have it connect to the
+  # Manager in this particular deployment, based on a collected host entry.
+  class { '::cloudera':
+    cm_server_host   => 'cm_server',
+    install_java     => $manage_java,
+  }
 
   # Export a host file entry for this machine so that other hosts
   # in the deployment do not need to use DNS to find each other.
@@ -35,12 +53,6 @@ class profile::cdh::host (
 
   # Cloudera recommends that all hosts synchronize time with the Manager.
   if ( $manage_ntp ) { class { 'ntp': servers => ['cm_server'], } }
-
-  # Set up a basic Cloudera agent on this node, and have it connect to the
-  # Manager in this particular deployment, based on a collected host entry.
-  class { '::cloudera':
-    cm_server_host   => 'cm_server',
-  }
 
   # The puppetlabs-firewall module can open the proper ports, if desired.
   if ( $manage_firewall ) {
