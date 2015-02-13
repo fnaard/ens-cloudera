@@ -50,3 +50,19 @@ node 'inchworm.puppetlabs.vm' {
     deployment => 'newthing',
   }
 }
+
+# Cloudera Hosts in a deployment named 'newthing' -- to be inherited.
+node 'cdh-host.newthing' {
+  include profile::base
+  class { 'profile::cdh::host':
+    deployment => 'newthing',
+  }
+}
+
+# Cloudera Hosts in a deployment named 'newthing' -- actual nodes.
+node 'ip-10-0-20-249.us-west-2.compute.internal' inherits 'cdh-host.newthing' { }
+node 'ip-10-0-20-250.us-west-2.compute.internal' inherits 'cdh-host.newthing' { }
+node 'ip-10-0-20-251.us-west-2.compute.internal' inherits 'cdh-host.newthing' { }
+node 'ip-10-0-20-252.us-west-2.compute.internal' inherits 'cdh-host.newthing' { }
+node 'ip-10-0-20-253.us-west-2.compute.internal' inherits 'cdh-host.newthing' { }
+node 'ip-10-0-20-254.us-west-2.compute.internal' inherits 'cdh-host.newthing' { }
