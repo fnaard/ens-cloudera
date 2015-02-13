@@ -23,6 +23,7 @@ class profile::cdh::host (
     ensure  => 'present',
     ip      => $::ipaddress,
     comment => "Cloudera 5 Host (${deployment})",
+    host_aliases => $::hostname,
     tag     => ['cloudera',$deployment],
   }
 

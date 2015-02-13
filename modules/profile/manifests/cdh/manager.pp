@@ -22,7 +22,7 @@ class profile::cdh::manager (
   @@host { $::fqdn:
     ensure       => 'present',
     ip           => $::ipaddress,
-    host_aliases => 'cm_server',
+    host_aliases => [ $::hostname, 'cm_server' ],
     comment      => "Cloudera 5 Manager (${deployment})",
     tag          => [ 'cloudera', $deployment ],
   }
