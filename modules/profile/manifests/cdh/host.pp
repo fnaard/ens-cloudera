@@ -31,18 +31,18 @@ class profile::cdh::host (
   # Set up a basic Cloudera agent on this node, and have it connect to the
   # Manager in this particular deployment, based on a collected host entry.
   class { '::cloudera':
-    cm_server_host   => 'cm_server',
-    install_java     => $manage_java,
+    cm_server_host => 'cm_server',
+    install_java   => $manage_java,
   }
 
   # Export a host file entry for this machine so that other hosts
   # in the deployment do not need to use DNS to find each other.
   @@host { $::fqdn:
-    ensure  => 'present',
-    ip      => $::ipaddress,
-    comment => "Cloudera 5 Host (${deployment})",
+    ensure       => 'present',
+    ip           => $::ipaddress,
+    comment      => "Cloudera 5 Host (${deployment})",
     host_aliases => $::hostname,
-    tag     => ['cloudera',$deployment],
+    tag          => ['cloudera',$deployment],
   }
 
   # Collect all host file entries for cloudera machines in this deployment.
