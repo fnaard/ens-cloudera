@@ -38,3 +38,12 @@ node 'ip-10-0-20-26.us-west-2.compute.internal' inherits 'cdh-host.labyrinth' { 
 node 'ip-10-0-20-27.us-west-2.compute.internal' inherits 'cdh-host.labyrinth' { }
 node 'ip-10-0-20-28.us-west-2.compute.internal' inherits 'cdh-host.labyrinth' { }
 node 'ip-10-0-20-30.us-west-2.compute.internal' inherits 'cdh-host.labyrinth' { }
+
+
+# Cloudera Manager
+node 'ludo.puppetlabs.vm' {
+  include profile::base
+  class { 'profile::cdh::manager':
+    deployment => 'fraggle',
+  }
+}
