@@ -25,7 +25,7 @@ node 'ambrosius.puppetlabs.vm' {
   }
 }
 
-# Cloudera Hosts in a deployment named 'labyrinth' -- in general.
+# Cloudera Hosts in a deployment named 'labyrinth' -- to be inherited.
 node 'cdh-host.labyrinth' {
   include profile::base
   class { 'profile::cdh::host':
@@ -40,24 +40,3 @@ node 'ip-10-0-20-28.us-west-2.compute.internal' inherits 'cdh-host.labyrinth' { 
 node 'ip-10-0-20-30.us-west-2.compute.internal' inherits 'cdh-host.labyrinth' { }
 node 'ip-10-0-20-31.us-west-2.compute.internal' inherits 'cdh-host.labyrinth' { }
 node 'ip-10-0-20-35.us-west-2.compute.internal' inherits 'cdh-host.labyrinth' { }
-
-
-# Cloudera Manager
-node 'toby.puppetlabs.vm' {
-  include profile::base
-  class { 'profile::cdh::manager':
-    deployment => 'fraggle',
-  }
-}
-
-# Cloudera Hosts in a deployment named 'fraggle' -- in general.
-node 'cdh-host.fraggle' {
-  include profile::base
-  class { 'profile::cdh::host':
-    deployment => 'fraggle',
-  }
-}
-
-node 'ip-10-0-20-47.us-west-2.compute.internal' inherits 'cdh-host.fraggle' { }
-node 'ip-10-0-20-48.us-west-2.compute.internal' inherits 'cdh-host.fraggle' { }
-node 'ip-10-0-20-49.us-west-2.compute.internal' inherits 'cdh-host.fraggle' { }
