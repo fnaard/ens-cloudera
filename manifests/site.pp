@@ -49,3 +49,11 @@ node 'ludo.puppetlabs.vm' {
     deployment => 'fraggle',
   }
 }
+
+# Cloudera Manager
+node 'ip-10-0-20-165.us-west-2.compute.internal' {
+  include profile::base
+  class { 'profile::cdh::manager':
+    deployment => 'sesame',
+  }
+}
