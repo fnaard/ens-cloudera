@@ -43,7 +43,7 @@ node 'ip-10-0-20-35.us-west-2.compute.internal' inherits 'cdh-host.labyrinth' { 
 
 
 # Cloudera Manager
-node 'ludo.puppetlabs.vm' {
+node 'toby.puppetlabs.vm' {
   include profile::base
   class { 'profile::cdh::manager':
     deployment => 'fraggle',
@@ -58,6 +58,6 @@ node 'cdh-host.fraggle' {
   }
 }
 
-node 'ip-10-0-20-36.us-west-2.compute.internal' inherits 'cdh-host.fraggle' { }
-node 'ip-10-0-20-37.us-west-2.compute.internal' inherits 'cdh-host.fraggle' { }
-node 'ip-10-0-20-38.us-west-2.compute.internal' inherits 'cdh-host.fraggle' { }
+# node 'ip-10-0-20-47.us-west-2.compute.internal' inherits 'cdh-host.fraggle' { }
+# node 'ip-10-0-20-48.us-west-2.compute.internal' inherits 'cdh-host.fraggle' { }
+# node 'ip-10-0-20-49.us-west-2.compute.internal' inherits 'cdh-host.fraggle' { }
